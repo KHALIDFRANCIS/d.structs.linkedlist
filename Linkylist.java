@@ -91,8 +91,8 @@ public class Linkylist {
 			return halfnode;
 		}
 	
-//	this option will feature two noced jumping at a two to one ration
-//	top one jumps two for every one that the bottom jumps. When the top is finished, the bottom node will print.
+//	this option will feature two nodes jumping at a two to one ratio
+//	top one jumps two noded for every node that the bottom jumps. When the top is finished, the bottom node will print.
 	public int jump(int data) {
 		node top = head;
 		node bottom = head;
