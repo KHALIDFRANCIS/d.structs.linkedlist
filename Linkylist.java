@@ -2,6 +2,7 @@ package linkedlistv2;
 
 import java.util.*;
 import java.io.*;
+import java.lang.*;	
 
 public class Linkylist {
 	
@@ -91,18 +92,39 @@ public class Linkylist {
 			return halfnode;
 		}
 	
-//	this option will feature two nodes jumping at a two to one ratio
-//	top one jumps two noded for every node that the bottom jumps. When the top is finished, the bottom node will print.
-	public int jump(int data) {
+//	this option will feature two noced jumping at a two to one ration
+//	top one jumps two for every one that the bottom jumps. When the top is finished, the bottom node will print.
+	public int jump() {
 		node top = head;
 		node bottom = head;
-		while (top.next != null) {
+		while (top != null && top.next != null) {
 			top = top.next.next;
 			bottom  = bottom.next;
 		}
+		if (top.next.next == null && top.next != null) {
+			return bottom.next.data;		
+		} else {
+			return bottom.data;
+		}
+		
 //		System.out.println("the middle node is " + bottom.data);
-		return bottom.data;
 	}
+	
+	public ListNode reverselist(ListNode head) {
+		node prev = null;		//this is the pointer / reference to the previous node
+		node curr = head;		//this is the current node 
+		node next = null;		//this is the pointer / reference to the next node 
+		while(curr != null) {			//while the current node is not equal to null......if there's something after,
+			next = curr.next; 			//....with respect to the current node, the next node (next) = the current node pointing to the next node (curr.next)
+			curr.next = prev;			//this is the part where the pointer to the next node "(->)" gets reversed to point the the previous node "(<-)"
+//			after the pointer gets flipped, everything takes their new places
+			prev = curr;		//what was the previous node is now the current node 
+			curr = next;		//what was the current node becomes the next node
+		}
+		return  prev;
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		Linkylist linky = new Linkylist();
@@ -122,26 +144,10 @@ public class Linkylist {
 		linky.prepend(45);
 		linky.prepend(19);
 		
-//		System.out.println(linky.size());
+		System.out.println(linky.jump());
 		
-//		for (int i : linky){
-			
-//		}
-		
-		int halfnode;
-		int nodect;
-		
-//		halfnode = nodect / 2;
-//		if (nodect % 2 == 1) {
-//			halfnode ++;
-//		}
-		
-//		System.out.println(halfnode);
-		
-//		System.out.println("middle node is " + linky.middlenode(halfnode));
+
 	}
 
 }
-
-
 //APPEND means to add to the end, PREPEND means to add to the beginning
